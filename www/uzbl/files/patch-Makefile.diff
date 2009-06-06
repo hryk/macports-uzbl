@@ -1,0 +1,37 @@
+--- Makefile.orig	2009-06-06 14:45:57.000000000 +0900
++++ Makefile	2009-06-06 14:45:41.000000000 +0900
+@@ -1,5 +1,5 @@
+-CPPFLAGS=$(shell pkg-config --cflags gtk+-2.0 webkit-1.0) -ggdb -Wall -W -DARCH="\"$(shell uname -m)\"" -DG_ERRORCHECK_MUTEXES -DCOMMIT="\"$(shell git log | head -n1 | sed "s/.* //")\""
+-LDFLAGS=$(shell pkg-config --libs gtk+-2.0 webkit-1.0)
++CPPFLAGS=$(shell pkg-config --cflags gtk+-2.0 webkit-1.0 gthread-2.0) -ggdb -Wall -W -DARCH="\"$(shell uname -m)\"" -DG_ERRORCHECK_MUTEXES -DCOMMIT="\"$(shell git log | head -n1 | sed "s/.* //")\""
++LDFLAGS=$(shell pkg-config --libs gtk+-2.0 webkit-1.0 gthread-2.0)
+ all: uzbl uzblctrl
+ 
+ test: uzbl
+@@ -16,16 +16,16 @@
+ 	rm -f uzblctrl
+ 
+ install:
+-	install -d $(DESTDIR)/usr/bin
+-	install -d $(DESTDIR)/usr/share/uzbl/docs
+-	install -d $(DESTDIR)/usr/share/uzbl/examples
+-	install -D -m755 uzbl $(DESTDIR)/usr/bin/uzbl
+-	install -D -m755 uzblctrl $(DESTDIR)/usr/bin/uzblctrl
+-	cp -ax docs     $(DESTDIR)/usr/share/uzbl/
+-	cp -ax config.h $(DESTDIR)/usr/share/uzbl/docs/
+-	cp -ax examples $(DESTDIR)/usr/share/uzbl/
+-	install -D -m644 AUTHORS $(DESTDIR)/usr/share/uzbl/docs
+-	install -D -m644 README  $(DESTDIR)/usr/share/uzbl/docs
++	install -d $(DESTDIR)/opt/local/bin
++	install -d $(DESTDIR)/opt/local/share/uzbl/docs
++	install -d $(DESTDIR)/opt/local/share/uzbl/examples
++	install -m755 uzbl     $(DESTDIR)/opt/local/bin/uzbl
++	install -m755 uzblctrl $(DESTDIR)/opt/local/bin/uzblctrl
++	cp -pr docs     $(DESTDIR)/opt/local/share/uzbl/
++	cp -p config.h  $(DESTDIR)/opt/local/share/uzbl/docs/
++	cp -pr examples $(DESTDIR)/opt/local/share/uzbl/
++	install -m644 AUTHORS $(DESTDIR)/opt/local/share/uzbl/docs
++	install -m644 README  $(DESTDIR)/opt/local/share/uzbl/docs
+ 
+ uninstall:
+ 	rm -rf $(DESTDIR)/usr/bin/uzbl

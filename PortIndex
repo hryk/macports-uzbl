@@ -1,0 +1,2 @@
+uzbl 322
+description {WWW browser for minimalists.} portdir www/uzbl homepage http://uzbl.org epoch 0 platforms darwin name uzbl depends_lib {port:pkgconfig port:webkit-gtk port:libsoup} maintainers hello@hryk.info long_description {Uzbl is webkit based web browser. Simple and configurable.} version 1.0 categories www revision 0
